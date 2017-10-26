@@ -1,0 +1,169 @@
+body{/*background-color:#F6F7F8;*/}
+
+/*.under-construction{width: 100%;height: 100%;position: absolute;background-color: #FFFFFF; background-image:url(../img/under-construction.jpg);background-position:center;background-repeat: no-repeat;background-size:80%; min-width: 300px;max-width: 640px;text-align: center;}
+.under-construction>div{position: absolute;bottom:70px;width: 200px;font-size: 0.14rem;color: #A5A5A5; letter-spacing: 2px;left: 50%;margin-left:-100px;}*/
+.grey{color: #A5A5A5;}
+.black{color: #000 !important;}
+.m-no-data{padding:.1rem 0;color:#777;text-align: center;}
+.m-tag{color: #A6A6A6;padding: 0.1rem;}
+.m-tag>.fl{margin-top: 4px;}
+.m-tag>.fr>b{font-weight: bold;font-size: 0.17rem;}
+.b-large{font-weight: bold;font-size: 0.15rem;}
+.icon-data, .icon-reward{background-repeat: no-repeat;background-size: 0.2rem;background-position:center;height: 0.36rem;}
+/*.icon-data{background-image: url(../img/data.png);}
+.icon-reward{background-image: url(../img/reward.png);}*/
+
+/*横排月数*/
+.g-month-head{width: 100%;background-color: #fff;border-collapse: collapse;}
+.g-month-head tr{text-align: center;border-bottom:1px solid transparent;border-bottom-color: #F4F4F8;}
+.g-month-head td{padding: 0.1rem 0;font-size: 0.15rem;}
+.g-month-head td.active{color:#ffc333;border-bottom:2px solid #ffc333;}
+
+/*详情列表*/
+.g-month-row{background-color: #fff;border-bottom: 1px solid #eee;}
+.g-month-row>.m-head{
+  padding: 0.1rem 0;
+  margin:0 0.1rem; 
+  display: block;
+  background-repeat: no-repeat;
+  background-size: 0.2rem;
+  background-position:right center;
+  background-image: url(../img/drop-down.png);
+}
+.g-month-row>.m-head.active, .top-select>.fr{background-image: url(../img/drop-up.png);}
+.g-month-row>.m-head b{}
+.g-month-row>.m-head>.fl{}
+.g-month-row>.m-head>.fr{margin-right: 0.25rem;}
+
+.top-select{position: fixed;top:0;width: 100%;background-color:#F4F4F8;z-index: 999;height: 0.35rem;line-height: 0.35rem;}
+.top-select>.fl{margin-left: 0.1rem;}
+.top-select>.fr{background-repeat: no-repeat;background-size: 0.2rem;background-position:center;width: 0.2rem;height: 0.35rem;margin-right:0.1rem;}
+
+.g-month-row>.m-list{overflow-y: scroll;}
+.g-month-row>.m-list>li{padding-left:0.15rem;}
+.g-month-row>.m-list>li .row>div{line-height: 0.35rem;}
+.g-month-row>.m-list>li .row.clr>.content{margin-left: 0.4rem;padding-left:0 !important;}
+.g-month-row>.m-list>li .row>.fl{width: 0.4rem;}
+.g-month-row>.m-list>li .row>.content{padding-left: 0.4rem;font-size: 0.14rem;color: #444;border-bottom: 1px solid #E7E7E7;}
+.g-month-row>.m-list>li .row>.content>.fr{margin-right: 0.1rem;color: #222;}
+.g-month-row>.m-list>li>div:last-child .row:last-child>div{border-bottom:none;}
+
+/*下拉刷新box*/
+.draggable-header-view {
+  position: relative;
+}
+.draggable-header-view .bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+.draggable-header-view .header, .draggable-header-view>.content {
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
+}
+.draggable-header-view .header {
+  width: 100%;
+  left: 0;
+  margin:0;
+  height: 30px;
+  position: absolute;
+  top: 0;
+  color: #fff;
+  line-height: 30px;
+}
+.m-loading-spinner {
+    top: 50%;
+    left: 50%;
+    margin-top: -.18rem;
+    margin-left: -.18rem;
+    position: absolute;
+    text-align: center;
+    width:.36rem;
+    height: .36rem;
+}
+
+.m-loading-spinner .circular {
+    width: .36rem;
+    height: .36rem;
+    animation: loading-rotate 2s linear infinite;
+    -webkit-animation: loading-rotate 2s linear infinite;
+}
+
+.m-loading-spinner .path {
+    animation: loading-dash 1.5s ease-in-out infinite;
+    -webkit-animation: loading-dash 1.5s ease-in-out infinite;
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: 0;
+    stroke-width: 6;
+    stroke: #4b3887;
+    stroke-linecap: round
+}
+
+.m-loading-spinner .loading-text {
+    color: #4b3887;
+    margin: 3px 0;
+    font-size: 14px
+}
+
+
+
+@keyframes loading-dash {
+    0% {
+        stroke-dasharray: 1, 200;
+        stroke-dashoffset: 0
+    }
+    50% {
+        stroke-dasharray: 90, 150;
+        stroke-dashoffset: -40px
+    }
+    to {
+        stroke-dasharray: 90, 150;
+        stroke-dashoffset: -120px
+    }
+}
+
+@-webkit-keyframes loading-dash {
+    0% {
+        stroke-dasharray: 1, 200;
+        stroke-dashoffset: 0
+    }
+    50% {
+        stroke-dasharray: 90, 150;
+        stroke-dashoffset: -40px
+    }
+    to {
+        stroke-dasharray: 90, 150;
+        stroke-dashoffset: -120px
+    }
+}
+.draggable-header-view .m-loading-spinner{margin-top:0;}
+.draggable-header-view .m-loading-spinner>.circular{width: 0.28rem;height:0.28rem;}
+.draggable-header-view .m-loading-spinner>.circular>.path{stroke: #fff;}
+
+
+/*开卡佣金*/
+.g-month-row>.m-list>.commision{border-bottom: 1px solid #E7E7E7;}
+.g-month-row>.m-list>.commision>div>.b-large{padding: 5px 0;}
+.g-month-row>.m-list>.commision .row:last-child>div{border-bottom: 1px solid #E7E7E7;padding-bottom: 5px;}
+.g-month-row>.m-list>.commision>div>.b-large>div{border-bottom: none !important;}
+.g-month-row>.m-list>.commision .row>div{border-bottom:0;line-height: 0.2rem;padding-top:5px;}
+.g-month-row>.m-list>.commision .row>.fl{line-height: 0.21rem !important;}
+.g-month-row>.m-list>.commision .row.clr>.content{margin-left: 0.4rem;margin-left:0 !important;}
+.g-month-row>.m-list>.commision .row>.content{margin-left: 0.4rem;color: #666;font-size: 0.13rem;padding-left: 0;}
+.g-month-row>.m-list>.commision .row>.content b{font-size: 0.15rem;color: #000;}
+.g-month-row>.m-list>.commision .row>.content .sm-f{font-size:0.1rem;line-height:0.22rem;}
+.f-space{padding-left: 13px;display: inline-block;}
+
+/*账户记录*/
+.g-month-row>.m-list>.account>div:last-child{border-bottom: 1px solid #E7E7E7;padding-bottom: 5px;}
+.g-month-row>.m-list>.account:last-child>div:last-child{border-bottom:none;}
+.g-month-row>.m-list>.account .row>.content{color: #666;}
+.g-month-row>.m-list>.account .row>.fl{width:auto;}
+.g-month-row>.m-list>.account .row>.fr{margin-right: 0.1rem;}
+.g-month-row>.m-list>.account .row>div{line-height: 0.25rem;font-size: 0.13rem;}
+.g-month-row>.m-list>.account .row>div{border-bottom: none;}
+.g-month-row>.m-list>.account .row>.content{padding-left: 0;border-bottom: none;line-height: 20px;}
+
+

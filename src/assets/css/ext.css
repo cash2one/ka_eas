@@ -1,0 +1,16 @@
+@charset "utf-8";
+/* CSS Document */
+body{background-color:#F8F8F8; padding-bottom: 0.3rem;font-size: 0.14rem;}
+header>img{width: 100%;display: block;}
+#app{padding: 0 0.1rem;}
+.tag-0{ background-image: url(../img/shiming_title_icon.png);background-repeat: no-repeat;background-size:12px;background-position:left center; padding: 0.1rem 0; font-size: 0.14rem; padding-left: 0.15rem; color: #4b3887;}
+.title-1{ color: #000;font-size: 0.16rem; margin-top: 20px;margin-bottom:10px;}
+.title-2{ color: #f00; margin:10px 0;}
+.text{line-height: 1.7;color: #333;}
+table{ width: 100%;white-space: normal;word-wrap:break-word;word-break: break-word;border-collapse: collapse;text-align: center;}
+table tr:first-child>td{padding:0.15rem 0;background-color: #4b3887; color: #fff}
+table tr td{border: 1px solid #eee;padding: 0.1rem 0;color:#454647;}
+ul{color: #333;}
+ul>li{position: relative;line-height: 1.7;padding-left: 0.15rem;}
+ul>li>b{position: absolute;background:#EB7A04;display: inline-block; width: 0.07rem;height: 0.07rem;border-radius: 50%; left: 0rem;top: 0.07rem;}
+.box{font-size: 0.12rem;line-height: 1.5;text-indent: 15px;margin-top:15px;color: #666;}

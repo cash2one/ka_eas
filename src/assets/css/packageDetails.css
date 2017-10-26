@@ -1,0 +1,122 @@
+.details-header {
+    padding: .1rem 0
+}
+
+.details-header>div {
+    padding: .1rem 0;
+    width: 1rem;
+    text-align: center;
+}
+
+.details-header>div>img {
+    width: .5rem;
+    margin-top: .08rem
+}
+
+.details-header>dl {
+    padding-top: .23rem
+}
+
+.details-header>dl>dt {
+    font-size: 16px;
+    font-weight: 700;
+    margin: .1rem 0
+}
+
+.details-header>dl>dd {
+    color: #666;
+    margin-bottom: .03rem
+}
+.package-ul {
+    padding: 0 .1rem;
+    font-size: .13rem
+}
+
+.package-ul>li {
+    border: 1px solid #434343;
+    border-radius: 2px;
+    padding: .1rem 0;
+    margin-bottom: .1rem;
+    float: left;
+    text-align: center
+}
+.package-ul>li>a {
+    color: #434343;
+    display: block
+}
+
+.package-ul>.active {
+    position: relative;
+    border-color: #EC7402
+}
+.package-ul>.active:after {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: .25rem;
+    height: .25rem;
+    background-repeat: no-repeat;
+    background-image: url(../img/ic_checked.png);
+    background-size: 100%
+}
+
+.package-ul>.active2:after {
+    background-image: url(../img/ic_checked2.png);
+    width: .3rem;
+    height: .3rem;
+    bottom: -1px
+}
+
+.package-ul>.active>a {
+    color: #EC7402
+}
+.col-c-2>li {
+    width: 48%;
+    margin-left: 4%
+}
+
+.col-c-2>li:nth-child(odd) {
+    margin-left: 0
+}
+.details {
+    font-size: .13rem
+}
+
+.details>table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    word-break: break-word;
+    word-wrap: break-word;
+    white-space: normal
+}
+
+.details>table td {
+    border: 1px solid #eee;
+    padding: .05rem;
+    color: #555;
+    line-height: 1.6
+}
+
+.details>table td:last-child,
+.lastTD {
+    text-align: center;
+    min-width: .5rem;
+    color: #2e3e4e;
+    font-size: .14rem
+}
+.details-footer {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    z-index: 666;
+}
+
+.details-footer>a {
+    color: #fff;
+    border-radius: 0;
+    width: 100%
+}
