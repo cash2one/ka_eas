@@ -44,7 +44,7 @@ html {
 }
 
 body {
-    max-width: 768px;
+    max-width: 960px;
     min-width: 300px;
     margin: auto;
     width: 100%;
@@ -377,35 +377,52 @@ input[type=checkbox] {
 .col-3>.yellow2>span{background-size: 0.12rem;}
 
 .card-list{position: relative;}
-.card-list li{
-    text-align: center;
-    background-color: #fff
-}
-.card-list li .active:before{
-    background-repeat: no-repeat
-}
+
 .card-list>ul {
+    padding:0 0.1rem;
     padding-bottom: 0.2rem;
     /*overflow-y: scroll;
     -webkit-overflow-scrolling: touch*/
 }
-
-.card-list li {
+.card-list li{
     float: left;
     border-bottom: 1px solid #f1f1f1;
     padding-bottom: 2px;
+    background-color: #fff
 }
-.card-list li:nth-last-child(2), .card-list li:last-child{
-    border-bottom:1px solid transparent;
-}
-@media screen and (max-width: 474px){
+
+@media screen and (max-width: 469px){
     .card-list li, .m-panel-svg>dd{width: 50%;}
+    .card-list li:nth-child(2n){
+        text-align: right;
+    }
+    .card-list li:nth-last-child(2), .card-list li:last-child{
+        border-bottom:1px solid transparent;
+    }
 }
-@media screen and (min-width:475px) and (max-width: 639px) {
+@media screen and (min-width:470px) and (max-width: 719px) {
     .card-list li, .m-panel-svg>dd{width: 33.3333%;}
+    .card-list li:nth-child(3n-1){
+        text-align: center;
+    }
+    .card-list li:nth-child(3n){
+        text-align: right;
+    }
+    .card-list li:nth-last-child(3), .card-list li:nth-last-child(2), .card-list li:last-child{
+        border-bottom:1px solid transparent;
+    }
 }
-@media screen and (min-width:639px){
+@media screen and (min-width:720px){
     .card-list li, .m-panel-svg>dd{width: 25%;}
+    .card-list li:nth-child(4n-2), .card-list li:nth-child(4n-1){
+        text-align: center;
+    }
+    .card-list li:nth-child(4n){
+        text-align: right;
+    }
+    .card-list li:nth-last-child(4), .card-list li:nth-last-child(3), .card-list li:nth-last-child(2), .card-list li:last-child{
+        border-bottom:1px solid transparent;
+    }
 }
 .card-list li>a {
     display: block;
@@ -416,12 +433,36 @@ input[type=checkbox] {
 
 .card-list li .number {
     font-size:20px;
-    letter-spacing: 1px;
+    letter-spacing:1px;
     display: inline-block;
     padding-right:15px;
     height: 42px;
 }
+@media screen and (min-width:470px) and (max-width:539px){
+    .card-list li .number {
+        font-size: 18px;
+        letter-spacing: 0px
+    }
+}
+@media screen and (min-width:351px) and (max-width:374px) {
+    .card-list li .number {
+        font-size: 19px;
+        letter-spacing: 1px
+    }
+}
+@media screen and (min-width:320px) and (max-width:350px) {
+    .card-list li .number {
+        font-size: 18px;
+        letter-spacing: 0
+    }
+}
 
+@media screen and (max-width:319px) {
+    .card-list li .number {
+        font-size:17px;
+        letter-spacing: 0
+    }
+}
 .card-list li .active {
     position: relative
 }
@@ -432,6 +473,7 @@ input[type=checkbox] {
     width:15px;
     height:15px;
     background-image: url(../img/sprite_icons.png);
+    background-repeat: no-repeat;
     background-position: center;
     background-size: 100%;
     position: absolute;
@@ -457,31 +499,7 @@ input[type=checkbox] {
 .card-list li .clr>.fr>.green {
     font-size:14px;
 }
-@media screen and (min-width:320px) and (max-width:340px) {
-    .card-list li .number {
-        font-size: 19px;
-        letter-spacing: 0
-    }
-    .card-list li .active:before {
-        right: 1px
-    }
-    .card-list li .clr>.blue {
-        margin-right:30px;
-    }
-}
 
-@media screen and (max-width:319px) {
-    .card-list li .number {
-        font-size:18px;
-        letter-spacing: 0
-    }
-    .card-list li .active:before {
-        top: 3px
-    }
-    .card-list li .clr>.blue {
-        margin-right:22px;
-    }
-}
 /*上拉*/
 .m-dragdown-loading{
     position: absolute;

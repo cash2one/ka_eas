@@ -1,5 +1,4 @@
 @charset "utf-8";
-.card-list li,
 .card-title,
 .col-3>a,
 .drag-loading,
@@ -13,7 +12,6 @@
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch
 }
-.card-list li .active:before,
 .card-title>.back,
 .drag-loading>span,
 .tag-0>span {
@@ -265,7 +263,7 @@
     z-index: 777;
     width: 100%;
     padding: 0!important;
-    max-width: 768px;
+    max-width: 960px;
     min-width: 300px;
     margin: auto;
     background-color: #fff

@@ -84,7 +84,6 @@
     display: block;
 }
 
-.card-list li,
 .card-title,
 .col-3>a,
 .dragLoading,
@@ -378,7 +377,7 @@
     z-index: 777;
     width: 100%;
     padding: 0!important;
-    max-width: 768px;
+    max-width: 960px;
     min-width: 300px;
     margin: auto
 }

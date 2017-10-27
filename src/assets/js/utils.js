@@ -43,7 +43,7 @@ export default{
             return w;
         },
         Vue.prototype.filterLevel=function(level){
-            var levelArr=['','（特级）','','','','','',''];
+            var levelArr=['','特级','','','','','',''];
             return levelArr[parseInt(level)];
         },
         Vue.prototype.AJAX=function(url,data,success,closeLoad,closeBase64){
@@ -129,19 +129,6 @@ export default{
                         btn:[],
                         code:'649'
                     });
-                }else if(data.code=="681"){
-                    layer.open({
-                        title:'提示',
-                        content:'当前有未处理订单，是否处理订单？',
-                        btn:['处理订单','取消'],
-                        yes:function(){
-                            Jsborya.pageJump({
-                                url:"index.html",
-                                depiction:"号板",
-                                stepCode:'2001'
-                            })
-                        }
-                    });
                 }else{
                     layer.open({
                         content:data.msg||data,
@@ -170,7 +157,7 @@ export default{
                     if(xhr.status>=200&&(xhr.status<300 || xhr.status===304)){
                         try{
                             var responseText=JSON.parse(xhr.responseText);
-                            responseText.code=='200' ? success(responseText) : error(responseText);
+                            responseText.code=='200'||responseText.code=='681' ? success(responseText) : error(responseText);
                         }catch(e){
                             console.log(e);
                             error('数据解析错误');
