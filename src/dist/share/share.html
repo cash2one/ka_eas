@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0,minimum-scale=1.0, maximum-scale=1.0">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="telephone=no" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+<title>卡盟-移动运营管理平台</title>
+<style>
+	[v-cloak]{
+		display: none;
+	}
+</style>
+</head>
+<body>
+<div id="app" v-cloak>
+	<transition appear name="bounceInLeft">
+	<header>
+		<img src="../../assets/img/share/titleBg.jpg">
+		<div>
+			<a href="javascript:void(0)" v-if="osType!=2" @click="isShow" class="btnScale">
+				<img src="../../assets/img/share/btn_android_download.png">
+			</a>
+			<a href="javascript:void(0)" v-if="osType==2&&inviteCode" data-clipboard-action="copy" data-clipboard-target="#clip_text_ios" id="clip-b" class="btnScale">
+				<img v-if="osType==2" src="../../assets/img/share/btn_ios_download.png">
+			</a>
+			<a href="javascript:void(0)" v-if="osType==2&&!inviteCode" @click="isShow" class="btnScale">
+				<img v-if="osType==2" src="../../assets/img/share/btn_ios_download.png">
+			</a>
+		</div>
+	</header>
+	</transition>
+
+	<transition appear name="bounceInRight">
+	<section class="invite" v-if="isInvite">
+		<div class="invite-user"><span class="blue">{{inviter}}</span>邀请您加入卡盟，邀请码：</div>
+		<div class="invite-handle clr">
+			<div id="clip_text" class="fl">{{inviteCode}}</div>
+			<div id="clip_text_ios" class="fl">卡盟邀请码${{inviteCode}}$</div>
+			<a href="javascript:void(0)" v-if="osType!=2" data-clipboard-action="copy" data-clipboard-target="#clip_text" id="clip-a" class="bg-y fl">复制邀请码</a>
+			<a href="javascript:void(0)" v-else data-clipboard-action="copy" data-clipboard-target="#clip_text_ios" id="clip-a" class="bg-y fl">复制邀请码</a>
+		</div>
+		<div class="invite-tips">注：你可以发送你的邀请码给朋友，朋友在注册卡盟商户时输入你的邀请码，你即可得到100元佣金奖励，同时朋友每成功开一张卡你也可以获得相应的奖励</div>
+	</section>
+	</transition>
+
+	<transition appear name="bounceInLeft">
+	<section class="depiction">
+		<div class="head"><b></b><div>卡盟</div>远特信时空为终端商户打造的移动业务办理平台</div>
+		<div class="tips">通过卡盟可灵活的进行智能化售卡，方便、安全、快捷；即时选号，智能开卡、代缴话费等在线办理；无需占用现金成本，即购即售，支持佣金、话费分成等多种分成模式</div>
+		<div class="clr"><a href="explain.html" class="btn-toExplain fr">新手引导 简单开卡 即享奖励</a></div>
+	</section>
+	</transition>
+
+	<transition appear name="bounceInRight">
+	<section class="dp-1 clr" style="background-color:#f5f5f5">
+		<table>
+			<tbody>
+				<tr>
+					<td class="pic"><img src="../../assets/img/share/pic01.png"></td>
+					<td><dl><dd><b></b>百万靓号实时共享</dd><dd><b></b>多种优惠套餐随时选择</dd><dd><b></b>在线办理方便快捷</dd></dl></td>
+				</tr>
+			</tbody>
+		</table>
+	</section>
+	</transition>
+
+	<transition appear name="bounceInRight">
+		<section>
+			<img style="width:100%;display:block" src="../../assets/img/share/pic_share.jpg">
+		</section>
+	</transition>
+
+	<transition appear name="bounceInLeft">
+	<section class="dp-2 clr" style="background-color:#f5f5f5">
+		<table>
+			<tbody>
+				<tr>
+					<td><dl><dt>渠道激励</dt><dd><b></b>低投入，稳回报</dd><dd><b></b>业绩、分佣实时查询</dd><dd><b></b>实名认证，安全有效</dd></dl></td>
+					<td class="pic"><img src="../../assets/img/share/pic02.png"></td>
+				</tr>
+			</tbody>
+		</table>
+	</section>
+	</transition>
+
+	<transition appear name="bounceInRight">
+	<section class="dp-3 clr">
+		<table>
+			<tbody>
+				<tr>
+					<td class="pic"><img src="../../assets/img/share/pic03.png"></td>
+					<td><dl><dt>移动办公</dt><dd><b></b>小巧灵活易操作</dd><dd><b></b>24小时人工客服为您解答疑问</dd></dl></td>
+				</tr>
+			</tbody>
+		</table>
+	</section>
+	</transition>
+	<div v-if="showImg" class="is-weichat" @click="hide"><img src="../../assets/img/share/guide.jpg"></div>
+	<iframe id="apk_iframe" style="display:none"></iframe>
+</div>
+<!-- CDN加载Vue库 -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.0.0/dist/vue.min.js" type="text/javascript"></script>
+</body>
+</html>

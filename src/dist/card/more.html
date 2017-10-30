@@ -1,0 +1,102 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0,minimum-scale=1.0, maximum-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="telephone=no" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<title>更多号码</title>
+<style type="text/css">
+	[v-cloak]{
+		display: none;
+	}
+</style>
+</head>
+<body>
+<div id="app" v-cloak>
+	<!--筛选-->
+	<div class="screen clr" :class="{screenActive:isOffScreen}" id="screenBox">
+		<section class="f-scroll" id="ruleCheck">
+			<dl class="clr">
+				<dt>号码范围</dt>
+				<dd @click="shiftPhoneType(1)" :class="{active:phoneType==1||phoneType==0}">远特号码</dd>
+				<dd @click="shiftPhoneType(2)" :class="{active:phoneType==2||phoneType==0}">联通号码</dd>
+			</dl>
+			<dl class="clr" v-show="phoneType!=2">
+				<dt>特殊靓号</dt>
+				<dd v-for="(todo,index) in ruleData.special" @click="shiftRule(index,1)" :class="{active:off.typeLevelZero==index}">{{todo.typeName}}</dd>
+			</dl>
+			<dl class="clr" v-show="phoneType!=2">
+				<dt>高级靓号</dt>
+				<dd v-for="(todo,index) in ruleData.senior" @click="shiftRule(index,2)" :class="{active:off.typeLevelOne==index}">{{todo.typeName}}</dd>
+			</dl>
+			<dl class="clr" v-show="phoneType!=2">
+				<dt>普通靓号</dt>
+				<dd v-for="(todo,index) in ruleData.ordinary" @click="shiftRule(index,3)" :class="{active:off.typeLevelTwo==index}">{{todo.typeName}}</dd>
+			</dl>
+			<dl class="clr" v-show="phoneType!=2">
+				<dt>价格区间</dt>
+				<dd v-for="(todo,index) in ruleData.price" @click="shiftRule(index,4)" :class="{active:off.typePrice==index}">{{todo.typeName}}</dd>
+			</dl>
+			<dl class="clr">
+				<dt>较多数位：</dt>
+				<dd v-for="(todo,index) in ruleData.number" @click="shiftRule(index,5)" :class="{active:off.typeNumMore==index}">{{todo.typeName}}</dd>
+			</dl>
+			<dl class="clr">
+				<dt>不含数位：</dt>
+				<dd v-for="(todo,index) in ruleData.isContain" @click="shiftRule(index,6)" :class="{active:off.typeNumLess==index}">{{todo.typeName}}</dd>
+			</dl>
+		</section>
+		<div class="m-fix-btn">
+			<a href="javascript:void(0)" @click="initRuleCheck" class="btn init">重置</a>
+			<a href="javascript:void(0)" @click="selectRule" class="btn sure">确定</a>
+		</div>
+		<div class="mask" @touchmove.prevent @click="switchPage('SCREEN')"></div>
+	</div>
+	</section>
+	<!--更多号卡列表-->
+	<section :class="{offScreen:isOffScreen}">
+		<header class="col-3 clr">
+			<a href="javascript:void(0)" class="yellow2" @click="switchPage('CITY')">
+				<span class="icon-location"></span>{{selectCity.cityName}}
+			</a>
+			<a href="javascript:void(0)" class="grey" @click="switchPage('SEARCH')"><span class="icon-search"></span>按号码搜索</a>
+			<a href="javascript:void(0)" @click="switchPage('SCREEN')" class="blue"><span class="icon-select"></span>筛选</a>
+		</header>
+		<div class="shift-div clr">
+			<a @click="shiftPretty(2)" :class="{active:isShift==2}">普号</a>
+			<a @click="shiftPretty(1)" :class="{active:isShift==1}">靓号</a>
+		</div>
+		<div class="card-list">
+			<ul id="moreUl" class="clr" v-if="cardList.list.length" :style="{height:windowHeight-139+'px'}" @scroll="pullLoad">
+				<li v-for="todo in cardList.list" :class="{active:!todo.cityCode}">
+					<a href="javascript:void(0)" @click="selectCard(todo.number,todo.cityName,todo.phoneType)">
+						<div class="number" :class="{active:todo.pretty==1}">{{phoneFormat(todo.number)}}
+							<div class="clr">
+								<span class="blue">{{todo.cityName}}</span>
+								<span class="fr" v-if="todo.cityCode">价格:￥<b>{{parseInt(todo.faceMoney)/100}}</b></span>
+							</div>
+						</div>
+					</a>
+				</li>
+			</ul>
+			<div v-if="!isPullLoad" class="m-dragdown-loading">
+				<span class="u-icon-loading"></span>
+				<span class="text">
+					<b>加载中···</b>
+				</span>
+			</div>
+			<dl class="clr m-panel-svg" v-if="!cardList.isNewVersion">
+				<dd v-for="i in pageSize"><div></div></dd>
+			</dl>
+			<div class="no-data" v-if="cardList.list.length==0">暂无数据</div>
+		</div>
+	</section>
+
+
+</div>
+<!-- CDN加载Vue库 -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.0.0/dist/vue.min.js" type="text/javascript"></script>
+</body>
+</html>

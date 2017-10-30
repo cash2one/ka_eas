@@ -1,0 +1,120 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0,minimum-scale=1,maximum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<title>全部订单</title>
+<style>
+[v-cloak]{
+		display: none;
+	}
+#app{position:absolute;width:100%;height:100%;}
+</style>
+</head>
+<body>
+	<div id="app" v-cloak>
+	<section v-if="type==1">
+		<table>
+			<tbody>
+				<tr>
+					<td v-for="(todo,index) in month" :class={active:index==check} @click="tab(index)">{{todo.name}}</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="tag clr">
+			<div class="fl">本月共有<b class="yellow">{{total}}</b>个订单</div>
+			<div class="fr">
+				<a class="drop-down" @click="dropDown">{{drop.name}}</a>
+				<span class="caret" v-if="drop.off"></span>
+				<ul class="drop-menu" v-if="drop.off">
+					<li title="0" @click="dropDown">全部订单</li>
+					<li title="2" @click="dropDown">开卡成功</li>
+					<li title="1" @click="dropDown">处理中</li>
+					<li title="3" @click="dropDown">开卡失败</li>
+					<li title="4" @click="dropDown">订单关闭</li>
+				</ul>
+			</div>
+		</div>
+		<ul id="listUl" v-if="total" :style="{height:windowHeight-77+'px'}" class="list" @scroll="pullLoad">
+			<li v-for="todo in list">
+				<div class="row-3-head clr"><div class="fl">订单号：{{todo.orderId}}</div>
+					<b class="fr yellow" v-if="todo.orderStatusNum==1">{{todo.orderStatus}}</b>
+					<b class="fr green" v-if="todo.orderStatusNum==2">{{todo.orderStatus}}</b>
+					<b class="fr red" v-if="todo.orderStatusNum==3">{{todo.orderStatus}}</b>
+					<b class="fr red" v-if="todo.orderStatusNum==4">{{todo.orderStatus}}</b>
+				</div>
+				<div class="row-3-mid">
+					<div class="col-2 clr">
+						<span class="phone">{{phoneFormat(todo.phone)}}</span>
+						<span class="info">（<b class="yellow">{{tLevel(todo.level)}}</b>{{todo.cityName}}）<time class="fr">{{getDateTime(todo.time)[7]}}</time></span>
+					</div>
+					<dl class="clr">
+						<dd><label>用户姓名：</label>{{todo.userName}}</dd>
+						<dd><label>支付方式：</label>{{todo.payType}}</dd>
+						<dd><label>身份证号：</label>{{todo.idCard}}</dd>
+						<dd><label>支付渠道：</label>{{todo.payChannel}}</dd>	
+						<dd><label>操作人ID：</label>{{todo.operatorId}}</dd>
+						<dd><label>操作人姓名：</label>{{todo.operatorName}}</dd>
+						<dd v-if="todo.msg!='--'" style="width:100%"><label>关闭原因：</label><b class="red">{{todo.msg}}</b></dd>
+					</dl>
+				</div>
+				<div class="row-3-sub">
+					<div>价格：<b>￥{{(parseInt(todo.phonePrice)/100+parseInt(todo.prestorePrice)/100)}}</b>（含号码占用费{{parseInt(todo.phonePrice)/100}}元+预存话费{{parseInt(todo.prestorePrice)/100}}元）</div>
+					<div class="col-2 clr">
+						<div class="fl" v-if="todo.orderStatusNum==2">返佣金额：<b class="yellow">￥{{parseFloat(todo.inCome)/100}}</b></div>
+						<p v-if="todo.payed==1" :class="{active:todo.orderStatusNum==2}">赠送抵扣：<b class="l-green">￥{{parseFloat(todo.deductionMoney)/100}}</b></p>
+					</div>
+					
+				</div>
+			</li>
+		</ul>
+		<div class="no-data" v-if="!list.length">暂无数据</div>
+		</section>
+		<!--搜索-->
+		<section v-if="type==2">
+			<header class="search-head">
+				<div class="clr"><input type="tel" v-model="searchInput" placeholder="请输入订单号或手机号" maxlength="32"><a class="bg-y" @click="search">搜索</a></div>
+			</header>
+			<div class="tag-s" id="searchTag">搜索结果</div>
+			<ul v-if="searchData" class="list">
+				<li v-for="todo in searchData">
+					<div class="row-3-head clr"><div class="fl">订单号：{{todo.orderId}}</div>
+						<b class="fr yellow" v-if="todo.orderStatusNum==1">{{todo.orderStatus}}</b>
+						<b class="fr green" v-if="todo.orderStatusNum==2">{{todo.orderStatus}}</b>
+						<b class="fr red" v-if="todo.orderStatusNum==3">{{todo.orderStatus}}</b>
+						<b class="fr red" v-if="todo.orderStatusNum==4">{{todo.orderStatus}}</b>
+					</div>
+					<div class="row-3-mid">
+						<div class="col-2 clr">
+							<span class="phone">{{phone_format(todo.phone)}}</span>
+							<span class="info">（<b class="yellow">{{tLevel(todo.level)}}</b>{{todo.cityName}}）<time class="fr">{{getDateTime(todo.time)[7]}}</time></span>
+						</div>
+						<dl class="clr">
+							<dd><label>用户姓名：</label>{{todo.userName}}</dd>
+							<dd><label>支付方式：</label>{{todo.payType}}</dd>
+							<dd><label>身份证号：</label>{{todo.idCard}}</dd>
+							<dd><label>支付渠道：</label>{{todo.payChannel}}</dd>
+							<dd><label>操作人ID：</label>{{todo.operatorId}}</dd>
+							<dd><label>操作人姓名：</label>{{todo.operatorName}}</dd>
+							<dd v-if="todo.msg" style="width:100%"><label>关闭原因：</label><b class="red">{{todo.msg}}</b></dd>
+						</dl>
+					</div>
+					<div class="row-3-sub">
+						<div>价格：<b>￥{{(parseInt(todo.phonePrice)/100+parseInt(todo.prestorePrice)/100)}}</b>（含号码占用费{{parseInt(todo.phonePrice)/100}}元+预存话费{{parseInt(todo.prestorePrice)/100}}元）</div>
+						<div class="col-2 clr">
+							<div class="fl" v-if="todo.orderStatusNum==2">返佣金额：<b class="yellow">￥{{parseFloat(todo.inCome)/100}}</b></div>
+							<p v-if="todo.payed==1" :class="{active:todo.orderStatusNum==2}">赠送抵扣：<b class="l-green">￥{{parseFloat(todo.deductionMoney)/100}}</b></p>
+						</div>
+					</div>
+				</li>
+			</ul>
+			<div class="no-data" v-if="!searchData.length">暂无数据</div>
+		</section>
+	</div>
+<!-- CDN加载Vue库 -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.0.0/dist/vue.min.js" type="text/javascript"></script>
+</body>
+</html>
