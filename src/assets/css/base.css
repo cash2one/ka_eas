@@ -94,33 +94,20 @@ input[type=checkbox] {
     background: #78CD51
 }
 
-.bg-g:active {
-    background: #6dbb4a
-}
-
 .bg-r {
     background: #ED3A26
 }
 
-.bg-r:active {
-    background: #ED3A26
-}
 
 .bg-y {
     background: #ffc333
 }
 
-.bg-y:active {
-    background: #ffb70a
-}
 
-.bg-b {
+.bg-p {
     background-color: #4b3887
 }
 
-.bg-b:active {
-    background-color: #4b3887
-}
 
 .btn-primary {
     background-color: #41cac0

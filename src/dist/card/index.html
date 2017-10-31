@@ -114,7 +114,7 @@
 				<dd><label>价格：</label><span class="grey">￥<b class="yellow">{{parseInt(orderInfo.totalMoney)/100}}</b>（含预存话费{{parseInt(orderInfo.prestoreMoney)/100}}元）</span></dd>
 				<dd><label>状态：</label><span class="red">{{orderInfo.orderStatus}}</span></dd>
 			</dl>
-			<a href="javascript:void(0)" class="btn bg-b btnScale" @click="continueOrder">继续完成该订单</a>
+			<a href="javascript:void(0)" class="btn bg-p btnScale" @click="continueOrder">继续完成该订单</a>
 			<a href="javascript:void(0)" class="btn btn-r" @click="abandon(orderInfo.sysOrderId)">放弃</a>
 			<div class="tips-time"><label>订单将保留：</label><time class="red">{{orderInfo.validTime}}</time></div>
 			<a href="javascript:void(0)" class="btn bg-y btnScale" @click="haveSeen">随便看看</a>
